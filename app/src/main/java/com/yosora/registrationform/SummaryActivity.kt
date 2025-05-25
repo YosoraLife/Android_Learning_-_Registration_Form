@@ -29,7 +29,6 @@ class SummaryActivity : AppCompatActivity() {
         binding.textViewAccountName.text = registration.getFullName()
         binding.textViewEmailAddress.text = registration.emailAddress
         binding.textViewPhoneNumber.text = registration.phoneNumber
-        binding.textViewPassword.text = registration.password
     }
 
     private fun setupIntents() {
