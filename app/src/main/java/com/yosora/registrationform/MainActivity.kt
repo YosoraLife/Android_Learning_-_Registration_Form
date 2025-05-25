@@ -1,5 +1,6 @@
 package com.yosora.registrationform
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -22,28 +23,28 @@ class MainActivity : AppCompatActivity() {
         // Setup the binding of the id's to the layout
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(this.binding.root)
-
-        // Setup the button click action
-        val registrationButton: Button = binding.buttonRegister
-        registrationButton.setOnClickListener {
-            onRegistrationClicked()
-        }
-
-        // SETUP SPINNER
-        val spinnerValues: Array<String> = arrayOf("Mr", "Ms")  // Set spinner values in an array
-        val spinnerAdapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            spinnerValues
-        )  // Set adaptor with the template and the values
-        binding.spinnerTitle.adapter = spinnerAdapter  // Bind the adaptor to the spinner in the layout
+        setupSpinner()
+        setupButton()
     }
 
-    private fun onRegistrationClicked() {
+    private fun setupSpinner() {
+        // SETUP SPINNER
+        val titles = arrayOf("Mr", "Ms")  // Set spinner values in an array
+        val titleAdapter = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, titles)  // Set adaptor with the template and the values
+        binding.spinnerTitle.adapter = titleAdapter  // Bind the adaptor to the spinner in the layout
+    }
 
+    private fun setupButton() {
+        // Setup the button click action
+        binding.buttonRegister.setOnClickListener {
+            createAccount()
+        }
+    }
+
+    private fun createAccount() {
         // Create an instance of data class Registration with all the input data
         val registration = Registration(
-            binding.spinnerTitle.selectedItem.toString(),
+            binding.spinnerTitle.selectedItem as String,
             binding.editTextFirstName.text.toString(),
             binding.editTextLastName.text.toString(),
             binding.editTextEmailAddress.text.toString(),
