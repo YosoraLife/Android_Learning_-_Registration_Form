@@ -1,5 +1,6 @@
 package com.yosora.registrationform
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -7,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.yosora.loginform.Registration
 import com.yosora.registrationform.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -34,11 +36,25 @@ class MainActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item,
             spinnerValues
         )  // Set adaptor with the template and the values
-        binding.spinnerTitle.adapter =
-            spinnerAdapter  // Bind the adaptor to the spinner in the layout
+        binding.spinnerTitle.adapter = spinnerAdapter  // Bind the adaptor to the spinner in the layout
     }
 
     private fun onRegistrationClicked() {
+
+        // Create an instance of data class Registration with all the input data
+        val registration = Registration(
+            binding.spinnerTitle.selectedItem.toString(),
+            binding.editTextFirstName.text.toString(),
+            binding.editTextLastName.text.toString(),
+            binding.editTextEmailAddress.text.toString(),
+            binding.editTextPhoneNumber.text.toString(),
+            binding.editTextPassword.text.toString()
+        )
+
+        // Create an new intent
+        val previewSummaryIntent = Intent(this, SummaryActivity::class.java)
+        previewSummaryIntent.putExtra("Registration", registration)  // Add the instance of the data class to the intent
+        startActivity(previewSummaryIntent)  // Start the activity
 
     }
 
