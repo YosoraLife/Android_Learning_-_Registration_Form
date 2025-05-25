@@ -7,4 +7,6 @@
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="your_account_details">Your account details</string>
+    <string name="join_us">Join Us</string>
+    <string name="create_a_free_account">Create a free account</string>
 </resources>
